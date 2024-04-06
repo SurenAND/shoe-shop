@@ -1,3 +1,4 @@
 import "./style.css";
+import { router } from "./src/Routes/router";
 
-document.querySelector("#app");
+router.resolve();
