@@ -10,6 +10,10 @@
     "db": "json-server --watch db.json -p 5001"
   },
   "devDependencies": {
+    "@iconify-json/bxs": "^1.1.10",
+    "@iconify-json/mdi": "^1.1.66",
+    "@iconify-json/uiw": "^1.1.11",
+    "@iconify/tailwind": "^0.1.4",
     "autoprefixer": "^10.4.19",
     "jsconfig": "^0.2.0",
     "postcss": "^8.4.38",
