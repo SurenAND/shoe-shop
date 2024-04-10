@@ -8,7 +8,6 @@ export const OnBoarding = () => {
   const notFirstVisit = localStorage.getItem("notFirstVisit")
     ? JSON.parse(localStorage.getItem("notFirstVisit"))
     : false;
-  console.log(notFirstVisit);
   setTimeout(() => {
     if (notFirstVisit) {
       router.navigate(ROUTE.login);
