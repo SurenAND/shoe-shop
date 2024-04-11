@@ -1,5 +1,5 @@
 import { router } from "@/Routes/router";
-import { Search, brandFilter, filterSection } from "@/components";
+import { SearchInput, brandFilter, filterSection } from "@/components";
 import { ROUTE } from "@/constant/routes";
 import { header, navbar } from "@/layout";
 import { El } from "@/utils";
@@ -13,7 +13,7 @@ export const Home = (info) => {
       El({
         element: "div",
         className: "fixed top-0 bg-white w-full pb-2",
-        children: [header(info), Search()],
+        children: [header(info), SearchInput()],
       }),
       El({
         element: "div",
