@@ -4,7 +4,6 @@ import { Loading, StartSlider, Welcome } from "@/templates";
 import { El } from "@/utils";
 
 export const OnBoarding = () => {
-  document.title = "Shoe Shop";
   const notFirstVisit = localStorage.getItem("notFirstVisit")
     ? JSON.parse(localStorage.getItem("notFirstVisit"))
     : false;

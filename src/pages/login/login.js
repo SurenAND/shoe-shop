@@ -1,6 +1,8 @@
 import { router } from "@/Routes/router";
 import { getData } from "@/api/GET/get";
 import { ROUTE } from "@/constant/routes";
+import { Login } from "@/templates";
+import { El } from "@/utils";
 import Cookies from "js-cookie";
 
 let UserInfo = {};
@@ -43,7 +45,7 @@ export const submitHandler = (e) => {
             UserInfo.password === formData.get("password") &&
             UserInfo.email === formData.get("email")
           ) {
-            formData.has("rememder")
+            formData.has("remember")
               ? Cookies.set("shoea", UserInfo.email, { expires: 7 })
               : Cookies.set("shoea", UserInfo.email);
 
@@ -64,4 +66,11 @@ export const submitHandler = (e) => {
           }, 3000);
         })
     : "";
+};
+
+export const LoginPage = () => {
+  return El({
+    element: "div",
+    children: [Login()],
+  });
 };
