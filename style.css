@@ -32,3 +32,25 @@ body {
   height: 8px !important;
   border-radius: 30% !important;
 }
+
+/* .swiper-pagination-bullet {
+  color: black;
+  background-color: black;
+  width: 30px;
+  height: 3px;
+  border-radius: 10px;
+  }
+  .swiper {
+  width: 100%;
+  height: 100%;
+  }
+  @layer base {
+  .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  }
+  
+  .scrollbar-hide {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+  }
+  } */

@@ -34,9 +34,7 @@ export const checkValidation = () => {
 
 export const submitHandler = (e) => {
   e.preventDefault();
-  // get login form data
   const formData = new FormData(e.currentTarget);
-  // check if user email or password is valid then request to get user information
   checkValidation()
     ? getData(`users?email=${formData.get("email")}`)
         .then((data) => {

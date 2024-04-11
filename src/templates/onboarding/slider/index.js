@@ -4,7 +4,7 @@ import { Button, StartSlide } from "@/components";
 import { PATHS } from "@/constant/path";
 import { ROUTE } from "@/constant/routes";
 import { El } from "@/utils";
-import Cookies from "js-cookie";
+
 // import Swiper bundle with all modules installed
 import Swiper from "swiper/bundle";
 // import styles bundle
