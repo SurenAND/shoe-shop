@@ -3,8 +3,7 @@ import { renderProducts } from "@/components";
 import { Home } from "@/templates";
 import { El } from "@/utils";
 
-export const HomePage = (info) => {
-  let filter = "";
+export const HomePage = (info, filter = "") => {
   if (!filter) {
     getData(`products`)
       .then((data) => {
