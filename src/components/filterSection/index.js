@@ -1,6 +1,7 @@
 import { getData } from "@/api/GET/get";
 import { El } from "@/utils";
 import Cookies from "js-cookie";
+import { renderProduct } from "../renderProducts";
 
 const info = {
   name: "",
@@ -47,7 +48,7 @@ export const renderFilter = (targetId = 0) => {
           id: index,
         },
         className:
-          "px-6 py-2 border-2 border-shoea bg-shoea text-white rounded-full",
+          "px-5 py-2 border-2 border-shoea bg-shoea text-white rounded-full",
         children: [
           El({
             element: "span",
@@ -63,7 +64,7 @@ export const renderFilter = (targetId = 0) => {
       dataset: {
         id: index,
       },
-      className: "px-6 py-2 border-2 border-shoea rounded-full",
+      className: "px-5 py-2 border-2 border-shoea rounded-full",
       children: [
         El({
           element: "span",
@@ -75,12 +76,12 @@ export const renderFilter = (targetId = 0) => {
   });
 };
 
-export const filterSection = (Page) => {
+export const filterSection = () => {
   return El({
     element: "div",
     id: "filter-section",
     className:
-      "w-full px-4 py-2 flex items-center justify-start gap-4 overflow-x-scroll overflow-y-hidden",
+      "w-full px-4 py-2 flex items-center justify-start gap-4 overflow-x-scroll overflow-y-hidden scrollbar-hide",
     children: [...renderFilter()],
     eventListener: [
       {
@@ -91,8 +92,8 @@ export const filterSection = (Page) => {
           e.currentTarget.innerHTML = "";
           e.currentTarget.append(...renderFilter(+target));
           filters[target].name === "All"
-            ? Page(info)
-            : Page(info, filters[target].name.toUpperCase());
+            ? renderProduct()
+            : renderProduct(filters[target].name.toUpperCase());
         },
       },
     ],

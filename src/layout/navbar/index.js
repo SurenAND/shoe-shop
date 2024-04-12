@@ -154,8 +154,8 @@ export const renderNavbar = () => {
 
 export const navbar = (target) => {
   setTimeout(() => {
-    const icon = document.getElementById(target);
-    icon.src = icons[target];
+    const navIcon = document.getElementById(target);
+    navIcon.src = icons[target];
   }, 0);
 
   return El({

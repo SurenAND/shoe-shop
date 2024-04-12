@@ -1,4 +1,5 @@
 import { router } from "@/Routes/router";
+import { getData } from "@/api/GET/get";
 import { El } from "@/utils";
 
 export const renderProducts = (container, products) => {
@@ -45,4 +46,24 @@ export const renderProducts = (container, products) => {
 
     container.appendChild(card);
   });
+};
+
+export const renderProduct = (filter) => {
+  if (!filter) {
+    getData(`products`)
+      .then((data) => {
+        const section = document.querySelector(".product-section");
+        section.innerHTML = "";
+        renderProducts(section, data);
+      })
+      .catch((error) => console.log(error));
+  } else {
+    getData(`products?brand=${filter}`)
+      .then((data) => {
+        const section = document.querySelector(".product-section");
+        section.innerHTML = "";
+        renderProducts(section, data);
+      })
+      .catch((error) => console.log(error));
+  }
 };
