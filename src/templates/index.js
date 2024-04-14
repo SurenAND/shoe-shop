@@ -5,3 +5,4 @@ export * from "./Search/index";
 export * from "./wishlist/index";
 export * from "./brandPage/index";
 export * from "./mostPopular/index";
+export * from "./SingleProduct/index";

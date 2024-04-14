@@ -5,3 +5,4 @@ export * from "./wishlist/wishlist";
 export * from "./search/search";
 export * from "./mostPopular/mostPopular";
 export * from "./brandPage/brandPage";
+export * from "./singleProduct/singleProduct";
