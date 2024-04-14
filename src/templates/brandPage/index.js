@@ -1,5 +1,4 @@
 import { router } from "@/Routes/router";
-import { ROUTE } from "@/constant/routes";
 import { El } from "@/utils";
 
 const header = (brand) => {
@@ -15,7 +14,7 @@ const header = (brand) => {
             element: "div",
             className: "flex",
             onclick: (e) => {
-              router.navigate(ROUTE.home);
+              window.history.back();
             },
             children: [
               El({

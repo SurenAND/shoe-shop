@@ -2,7 +2,6 @@ import { router } from "@/Routes/router";
 import { SearchInput, brandFilter, filterSection } from "@/components";
 import { ROUTE } from "@/constant/routes";
 import { header, navbar } from "@/layout";
-import { HomePage } from "@/pages";
 import { El } from "@/utils";
 
 export const Home = (info) => {
@@ -38,7 +37,7 @@ export const Home = (info) => {
               }),
             ],
           }),
-          filterSection(HomePage),
+          filterSection(),
           El({
             element: "div",
             className:

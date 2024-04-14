@@ -1,7 +1,8 @@
 import { filterSection } from "@/components";
+import { renderWishList } from "@/pages";
 import { El } from "@/utils";
 
-const header = (title) => {
+const wishlistHeader = (title) => {
   return El({
     element: "div",
     className: "w-full p-4 flex items-center justify-between",
@@ -29,10 +30,23 @@ const header = (title) => {
             children: [
               El({
                 element: "span",
-                className: "text-[#152536] text-xl font-bold",
+                className: "text-[#152536] text-xl font-bold ",
                 innerText: title,
               }),
             ],
+          }),
+        ],
+      }),
+      El({
+        element: "div",
+        className: "flex",
+        onclick: (e) => {
+          //
+        },
+        children: [
+          El({
+            element: "span",
+            className: "icon-[teenyicons--search-outline] w-6 h-6",
           }),
         ],
       }),
@@ -40,7 +54,8 @@ const header = (title) => {
   });
 };
 
-export const mostPopular = () => {
+export const wishlist = () => {
+  setTimeout(renderWishList, 0);
   return El({
     element: "div",
     className:
@@ -49,32 +64,11 @@ export const mostPopular = () => {
       El({
         element: "div",
         className: "w-full bg-white",
-        children: [header("Most Popular"), filterSection()],
+        children: [wishlistHeader("My WishList"), filterSection(true)],
       }),
       El({
         element: "div",
         className: "w-full px-6 py-4 grid grid-cols-12 gap-4 product-section",
-        children: [1, 2, 3, 4].map(() => {
-          return El({
-            element: "div",
-            className:
-              "max-w-sm animate-pulse flex flex-col items-start justify-center gap-2 col-span-6",
-            children: [
-              El({
-                element: "div",
-                className: "w-full h-2/3 bg-gray-200 rounded-2xl aspect-square",
-              }),
-              El({
-                element: "div",
-                className: "w-full h-5 rounded-full bg-gray-200",
-              }),
-              El({
-                element: "div",
-                className: "w-1/3 h-4 rounded-full bg-gray-200",
-              }),
-            ],
-          });
-        }),
       }),
     ],
   });

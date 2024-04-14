@@ -1,16 +1,5 @@
-import { getData } from "@/api/GET/get";
 import { El } from "@/utils";
-import Cookies from "js-cookie";
 import { renderProduct } from "../renderProducts";
-
-const info = {
-  name: "",
-  img: "./images/profile.jpg",
-};
-
-getData(`users?email=${Cookies.get("shoea")}`).then((data) => {
-  info.name = data[0].name;
-});
 
 const filters = [
   {
@@ -76,7 +65,7 @@ export const renderFilter = (targetId = 0) => {
   });
 };
 
-export const filterSection = () => {
+export const filterSection = (isWishList = false) => {
   return El({
     element: "div",
     id: "filter-section",
@@ -92,8 +81,8 @@ export const filterSection = () => {
           e.currentTarget.innerHTML = "";
           e.currentTarget.append(...renderFilter(+target));
           filters[target].name === "All"
-            ? renderProduct()
-            : renderProduct(filters[target].name.toUpperCase());
+            ? renderProduct("", isWishList)
+            : renderProduct(filters[target].name.toUpperCase(), isWishList);
         },
       },
     ],
