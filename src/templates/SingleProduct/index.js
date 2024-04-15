@@ -410,7 +410,7 @@ export const SingleProduct = (product) => {
               Button({
                 text: "Add to Cart",
                 extraClassName:
-                  "px-20 py-4 bg-black font-bold flex items-center justify-center gap-2",
+                  "text-white px-20 py-4 bg-black font-bold flex items-center justify-center gap-2",
                 icon: "icon-[solar--bag-4-bold]",
                 eventListener: [
                   {

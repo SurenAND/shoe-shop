@@ -22,11 +22,13 @@ export const addToCart = (cart, productInfo) => {
       isNew = false;
     }
   });
-  isNew ? cart.push(productInfo) : null;
+  if (isNew) {
+    cart.push(productInfo);
+  }
 
   getData(`users?_email=${Cookies.get("shoea")}`).then((data) => {
     const user = data[0];
-    user.cart.push(cart);
+    user.cart = cart;
     patchData(`users/${user.id}`, user);
   });
 };
@@ -36,8 +38,8 @@ export const isInWishlist = () => {
   getData(`users?_email=${Cookies.get("shoea")}`).then((data) => {
     let markWishlistIcon;
     const wishlist = data[0].wishlist;
-    wishlist.map((item) => {
-      markWishlistIcon = item.id == location.pathname.split("/")[2];
+    wishlist.find((item) => {
+      return (markWishlistIcon = item.id == location.pathname.split("/")[2]);
     });
     markWishlistIcon
       ? (wlIcon.src = `${PATHS.HOST_PATH}/images/likeFill.svg`)

@@ -6,3 +6,4 @@ export * from "./Search/index";
 export * from "./renderProducts/index";
 export * from "./brandFilter/index";
 export * from "./filterSection/index";
+export * from "./DeleteModal/index";

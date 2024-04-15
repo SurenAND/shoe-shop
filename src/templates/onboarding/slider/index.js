@@ -68,7 +68,7 @@ export const StartSlider = () => {
         children: [
           Button({
             text: "Next",
-            extraClassName: "w-96",
+            extraClassName: "text-white bg-shoea w-96 px-4 py-3",
             eventListener: [
               {
                 event: "click",

@@ -6,3 +6,4 @@ export * from "./wishlist/index";
 export * from "./brandPage/index";
 export * from "./mostPopular/index";
 export * from "./SingleProduct/index";
+export * from "./Cart/index";

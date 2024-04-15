@@ -8,4 +8,5 @@ export const ROUTE = {
   mostPopular: "/most-popular",
   cart: "/cart",
   orders: "/orders",
+  checkout: "/checkout",
 };

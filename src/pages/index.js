@@ -6,3 +6,4 @@ export * from "./search/search";
 export * from "./mostPopular/mostPopular";
 export * from "./brandPage/brandPage";
 export * from "./singleProduct/singleProduct";
+export * from "./cart/cartPage";

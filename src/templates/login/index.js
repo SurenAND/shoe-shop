@@ -121,7 +121,8 @@ export const Login = () => {
           }),
           Button({
             text: "Sign in",
-            extraClassName: "w-full mt-28 bg-opacity-50",
+            extraClassName:
+              "text-white bg-shoea w-full mt-28 bg-opacity-50 px-4 py-3",
             id: "login-btn",
             type: "submit",
             disabled: true,
