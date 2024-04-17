@@ -7,3 +7,4 @@ export * from "./renderProducts/index";
 export * from "./brandFilter/index";
 export * from "./filterSection/index";
 export * from "./DeleteModal/index";
+export * from "./PaymentModal/index";

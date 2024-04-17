@@ -44,7 +44,7 @@ export const deleteModal = (item) => {
               El({
                 element: "div",
                 className:
-                  "max-h-sm w-full flex items-center gap-2 p-4 shadow-[rgba(0,_0,_0,_0.1)_0px_4px_12px] rounded-2xl",
+                  "max-h-sm w-full flex items-center gap-2 p-4 shadow-custom rounded-2xl",
                 children: [
                   El({
                     element: "img",
@@ -111,7 +111,7 @@ export const deleteModal = (item) => {
                           El({
                             element: "span",
                             className: "text-shoea text-lg font-bold",
-                            innerText: `$ ${item.totalPrice}`,
+                            innerText: `$ ${item.totalPrice.toFixed(2)}`,
                           }),
                           El({
                             element: "div",

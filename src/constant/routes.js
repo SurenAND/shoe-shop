@@ -9,4 +9,7 @@ export const ROUTE = {
   cart: "/cart",
   orders: "/orders",
   checkout: "/checkout",
+  payment: "/payment-method",
+  shippingAddress: "/shipping-address",
+  shippingMethod: "/shipping-method",
 };

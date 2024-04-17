@@ -15,6 +15,9 @@ export default {
         "welcome-img":
           "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.80) 100%), url('/images/welcome_wallpaper.jpg')",
       },
+      boxShadow: {
+        custom: "rgba(0, 0, 0, 0.1)0px 4px 12px",
+      },
     },
   },
   plugins: [addDynamicIconSelectors(), require("flowbite/plugin")],
