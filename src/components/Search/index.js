@@ -3,7 +3,7 @@ import { debounce } from "lodash";
 import { CreateInput } from "../Inputs";
 import { router } from "@/Routes/router";
 import { ROUTE } from "@/constant/routes";
-import { renderRecentSearch, searchResult } from "@/pages";
+import { searchResult } from "@/pages";
 
 export const SearchInput = (showIcon = "", onSearch = false) => {
   return El({

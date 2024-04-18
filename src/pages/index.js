@@ -8,3 +8,4 @@ export * from "./brandPage/brandPage";
 export * from "./singleProduct/singleProduct";
 export * from "./cart/cartPage";
 export * from "./Checkout/CheckoutPage";
+export * from "./Orders/Orders";

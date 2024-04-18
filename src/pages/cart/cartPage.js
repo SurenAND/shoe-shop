@@ -75,21 +75,21 @@ export const cartRender = () => {
                     }),
                     El({
                       element: "span",
-                      className: `text-shoea text-md font-semibold`,
+                      className: `text-gray-500 text-sm font-semibold`,
                       innerText: item.color,
                     }),
                     El({
                       element: "div",
-                      className: `w-1 h-5 border-r-2 border-gray-500`,
+                      className: `w-1 h-3 border-r-2 border-gray-400`,
                     }),
                     El({
                       element: "span",
-                      className: `text-shoea text-md font-semibold`,
-                      innerText: "size",
+                      className: `text-gray-500 text-sm font-semibold`,
+                      innerText: "size = ",
                     }),
                     El({
                       element: "span",
-                      className: `text-shoea text-md font-semibold`,
+                      className: `text-gray-500 text-sm font-semibold`,
                       innerText: item.size,
                     }),
                   ],

@@ -8,3 +8,4 @@ export * from "./mostPopular/index";
 export * from "./SingleProduct/index";
 export * from "./Cart/index";
 export * from "./Checkout/index";
+export * from "./Orders/index";
