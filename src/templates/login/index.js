@@ -14,6 +14,14 @@ export const Login = () => {
     className: "w-full h-screen flex flex-col items-center justify-center pb-8",
     children: [
       El({
+        element: "span",
+        className:
+          "icon-[ion--arrow-back-outline] absolute left-5 top-6 z-50 w-6 h-6",
+        onclick: () => {
+          window.history.back();
+        },
+      }),
+      El({
         element: "img",
         src: `${PATHS.HOST_PATH}/images/logo.svg`,
       }),
@@ -68,6 +76,7 @@ export const Login = () => {
           CreateInput({
             icon: "icon-[bxs--lock-alt]",
             showIcon: "icon-[mdi--hide]",
+            isPass: true,
             placeholder: "Password",
             type: "password",
             name: "password",

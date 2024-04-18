@@ -17,11 +17,12 @@ export const SearchInput = (showIcon = "", onSearch = false) => {
         },
       },
     ],
-    className: "w-full px-4 py-1 text-gray-600 [&_input]:placeholder-gray-400",
+    className: "w-full px-4 py-1",
     children: [
       CreateInput({
         icon: "icon-[flowbite--search-outline]",
         showIcon,
+        isFilter: true,
         placeholder: "Search",
         name: "search",
         id: "search-input",

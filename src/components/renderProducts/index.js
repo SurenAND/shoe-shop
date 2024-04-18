@@ -6,7 +6,8 @@ import { El } from "@/utils";
 export const renderProducts = (
   container,
   products,
-  wishlistIcon = "hidden"
+  wishlistIcon = "hidden",
+  rating = "hidden"
 ) => {
   products.map((product) => {
     const card = El({
@@ -43,7 +44,7 @@ export const renderProducts = (
         //rating section
         El({
           element: "div",
-          className: `flex justify-start items-center ${wishlistIcon}`,
+          className: `flex justify-start items-center ${rating}`,
           children: [
             El({
               element: "span",
@@ -70,7 +71,7 @@ export const renderProducts = (
         El({
           element: "span",
           className: "text-shoea text-[16px] font-semibold w-full",
-          innerText: `$ ${product.price}`,
+          innerText: `$ ${product.price.toFixed(2)}`,
         }),
       ],
     });

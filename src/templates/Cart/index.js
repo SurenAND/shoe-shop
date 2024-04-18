@@ -48,6 +48,9 @@ const cartHeader = () => {
             className: "icon-[teenyicons--search-outline] w-6 h-6",
           }),
         ],
+        onclick: () => {
+          router.navigate(ROUTE.search);
+        },
       }),
     ],
   });
@@ -69,7 +72,7 @@ export const Cart = () => {
       El({
         element: "div",
         className:
-          "fixed bottom-0 w-full p-6 h-40 flex items-start justify-between bg-white shadow-2xl border-2 rounded-t-3xl",
+          "fixed bottom-0 w-full p-6 h-40 flex items-start justify-between bg-white shadow-2xl",
         children: [
           El({
             element: "div",

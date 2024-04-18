@@ -279,7 +279,7 @@ export const SingleProduct = (product) => {
               El({
                 element: "p",
                 className: "text-[13px]",
-                innerHTML: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et <strong>View More ...</strong>`,
+                innerHTML: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et <strong>view more..</strong>`,
               }),
             ],
           }),

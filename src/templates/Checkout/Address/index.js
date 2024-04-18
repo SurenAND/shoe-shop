@@ -12,18 +12,22 @@ let selectedAddress = finalAddress;
 const address = [
   {
     name: "Home",
+    default: "block",
     address: "61480 Sunbrook Park, PC 5679",
   },
   {
     name: "Office",
+    default: "hidden",
     address: "6993 Meadaw Valley Terra, PC 3637",
   },
   {
     name: "Apartment",
+    default: "hidden",
     address: "21833 Clyde Gallagher, PC 4662",
   },
   {
     name: "Parent's House",
+    default: "hidden",
     address: "5259 Blue Bill Park, PC 4627",
   },
 ];
@@ -114,8 +118,17 @@ export const Address = () => {
                             El({
                               element: "span",
                               className:
-                                "w-32 text-shoea text-md font-bold whitespace-nowrap truncate",
-                              innerText: addr.name,
+                                "w-32 flex gap-2 text-shoea text-md font-bold whitespace-nowrap truncate",
+                              children: [
+                                addr.name,
+                                // status
+                                El({
+                                  element: "span",
+                                  className: `bg-gray-200 mr-4 py-1.5 px-3 rounded-lg font-medium text-[10px] ${addr.default}`,
+                                  innerText: "Default",
+                                }),
+                              ],
+                              // innerText: addr.name,
                             }),
                             //details of selected Address
                             El({
@@ -132,18 +145,54 @@ export const Address = () => {
                           ],
                         }),
                         El({
-                          element: "input",
+                          element: "label",
                           className:
-                            "p-2 border-2 border-black text-black focus:bg-black focus:ring-black focus:ring-offset-white focus:text-black",
-                          name: "address",
-                          checked: true,
-                          type: "radio",
-                          onchange: (e) => {
-                            e.target.checked === true
-                              ? (selectedAddress = addr)
-                              : null;
+                            "relative flex items-center p-3 rounded-full",
+                          restAttrs: {
+                            for: `${addr.name}-input`,
                           },
+                          children: [
+                            El({
+                              element: "input",
+                              name: "address",
+                              className:
+                                "peer relative p-2 border-[3px] border-black text-black focus:bg-black focus:ring-black focus:ring-offset-white focus:text-black",
+                              id: `${addr.name}-input`,
+                              type: "radio",
+                              onchange: (e) => {
+                                e.target.checked === true
+                                  ? (selectedAddress = addr)
+                                  : null;
+                              },
+                            }),
+                            El({
+                              element: "span",
+                              className:
+                                "absolute opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100",
+                              innerHTML: `<svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-3.5 w-3.5"
+                              viewBox="0 0 16 16"
+                              fill="currentColor"
+                            >
+                              <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
+                            </svg>`,
+                            }),
+                          ],
                         }),
+                        // El({
+                        //   element: "input",
+                        //   className:
+                        //     "p-2 border-[3px] border-black text-black focus:bg-black focus:ring-black focus:ring-offset-white focus:text-black",
+                        //   name: "address",
+                        //   checked: true,
+                        //   type: "radio",
+                        //   onchange: (e) => {
+                        //     e.target.checked === true
+                        //       ? (selectedAddress = addr)
+                        //       : null;
+                        //   },
+                        // }),
                       ],
                     }),
                   ],

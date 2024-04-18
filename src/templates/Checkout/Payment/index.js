@@ -130,18 +130,48 @@ export const Payment = () => {
                               children: [
                                 El({
                                   element: "span",
-                                  className:
-                                    "text-shoea text-md font-bold self-end",
+                                  className: "text-shoea text-md font-bold",
                                   innerText: "$ " + pay.amount.toLocaleString(),
                                 }),
                                 El({
-                                  element: "input",
+                                  element: "label",
                                   className:
-                                    "p-2 border-2 border-black text-black focus:bg-black focus:ring-black focus:ring-offset-white focus:text-black",
-                                  name: "shipping",
-                                  type: "radio",
-                                  checked: true,
+                                    "relative flex items-center pr-1 rounded-full",
+                                  restAttrs: {
+                                    for: `${pay.name}-input`,
+                                  },
+                                  children: [
+                                    El({
+                                      element: "input",
+                                      name: "shipping",
+                                      className:
+                                        "peer relative p-2 border-[3px] border-black text-black focus:bg-black focus:ring-black focus:ring-offset-white focus:text-black",
+                                      id: `${pay.name}-input`,
+                                      type: "radio",
+                                    }),
+                                    El({
+                                      element: "span",
+                                      className:
+                                        "absolute opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100",
+                                      innerHTML: `<svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      class="h-3.5 w-3.5"
+                                      viewBox="0 0 16 16"
+                                      fill="currentColor"
+                                    >
+                                      <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
+                                    </svg>`,
+                                    }),
+                                  ],
                                 }),
+                                // El({
+                                //   element: "input",
+                                //   className:
+                                //     "p-2 border-[3px] border-black text-black focus:bg-black focus:ring-black focus:ring-offset-white focus:text-black",
+                                //   name: "shipping",
+                                //   type: "radio",
+                                //   checked: true,
+                                // }),
                               ],
                             }),
                           ],

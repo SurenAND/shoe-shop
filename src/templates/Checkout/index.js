@@ -33,17 +33,19 @@ const renderOrderList = () => {
         // calculate total price of all products and apply to UI
         amount += item.totalPrice;
         if (amount !== 0) {
-          amountPrice.innerText = "$ " + amount;
+          amountPrice.innerText = "$ " + amount.toFixed(2);
         }
         // calculate shipping price
         shippingPrice = finalShipping.price ? finalShipping.price : 0;
         if (shippingPrice !== 0) {
-          shipPrice.innerText = "$ " + shippingPrice;
+          shipPrice.innerText = "$ " + shippingPrice.toFixed(2);
         }
+
         // calculate final price: products & shipping price & promo price
-        finalPrice = amount + shippingPrice - amount * promo;
+        finalPrice = amount + shippingPrice;
+
         if (finalPrice !== 0) {
-          totalPrice.innerText = "$ " + finalPrice;
+          totalPrice.innerText = "$ " + finalPrice.toFixed(2);
         }
         orderList.appendChild(
           El({
@@ -188,7 +190,7 @@ const footer = () => {
   return El({
     element: "div",
     className:
-      "fixed bottom-0 w-full p-6 h-28 flex items-start justify-between bg-white shadow-2xl border-2 rounded-t-3xl",
+      "fixed bottom-0 w-full p-6 h-28 flex items-start justify-between bg-white shadow-2xl",
     children: [
       Button({
         text: "Continue to Payment",
@@ -341,11 +343,11 @@ export const Checkout = () => {
                       El({
                         element: "span",
                         className:
-                          "rounded-full bg-shoea text-white p-2 flex items-center justify-center",
+                          "rounded-full bg-shoea text-white p-4 flex items-center justify-center",
                         children: [
                           El({
                             element: "span",
-                            className: "icon-[ic--round-local-shipping]",
+                            className: `${finalShipping.icon} w-5 h-5`,
                           }),
                         ],
                       }),
@@ -472,7 +474,7 @@ export const Checkout = () => {
                               element: "div",
                               id: "discount",
                               className:
-                                "flex items-center gap-4 bg-black text-white font-semibold p-2 rounded-2xl",
+                                "flex items-center gap-4 bg-black text-white font-semibold text-sm px-5 py-3 rounded-full",
                               children: [
                                 El({
                                   element: "span",
@@ -489,29 +491,42 @@ export const Checkout = () => {
                                     document
                                       .getElementById("promo-code")
                                       .classList.remove("hidden");
+
+                                    document.getElementById(
+                                      "total-price"
+                                    ).innerText = `$ ${finalPrice}`;
+                                    document
+                                      .getElementById("promo-price-section")
+                                      .classList.add("hidden");
                                   },
                                 }),
                               ],
                             })
                           );
-                          //update promo price
-                          finalPrice =
+
+                          // //update promo price
+                          let newFinalPrice =
                             finalPrice -
-                            Math.floor(finalPrice * (disc.percent / 100));
+                            Math.floor(amount * (disc.percent / 100));
+
                           document.getElementById(
                             "promo-price"
                           ).innerText = `-$ ${Math.floor(
-                            finalPrice * (disc.percent / 100)
+                            amount * (disc.percent / 100)
                           )}`;
                           document.getElementById(
                             "total-price"
-                          ).innerText = `$ ${finalPrice}`;
+                          ).innerText = `$ ${newFinalPrice}`;
                           document
                             .getElementById("promo-price-section")
                             .classList.remove("hidden");
                           e.target.reset();
                         } else {
-                          // e.target.reset();
+                          e.target.reset();
+                          e.target.promoCode.placeholder = "No promotion code!";
+                          e.target.promoCode.classList.add(
+                            "placeholder:text-red-500"
+                          );
                         }
                       });
                     }

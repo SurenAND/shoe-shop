@@ -1,4 +1,6 @@
+import { router } from "@/Routes/router";
 import { filterSection } from "@/components";
+import { ROUTE } from "@/constant/routes";
 import { renderWishList } from "@/pages";
 import { El } from "@/utils";
 
@@ -47,6 +49,9 @@ const wishlistHeader = (title) => {
           El({
             element: "span",
             className: "icon-[teenyicons--search-outline] w-6 h-6",
+            onclick: () => {
+              router.navigate(ROUTE.search);
+            },
           }),
         ],
       }),

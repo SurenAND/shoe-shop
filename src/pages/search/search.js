@@ -18,7 +18,7 @@ export const searchResult = (searchVal) => {
     ? document.getElementById("search-found").remove()
     : null;
   searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-  const request = () => {
+  const searching = () => {
     if (searchVal !== "") {
       getData(`products?name_like=${searchVal}`)
         .then((data) => {
@@ -28,8 +28,7 @@ export const searchResult = (searchVal) => {
               El({
                 element: "div",
                 id: "search-found",
-                className:
-                  "w-full p-4 flex items-center justify-between border-b border-gray-300",
+                className: "w-full p-4 flex items-center justify-between",
 
                 children: [
                   El({
@@ -45,23 +44,33 @@ export const searchResult = (searchVal) => {
                 ],
               })
             );
-            renderProducts(section, data);
-            if (searchVal !== "") {
-              searchHistory.push(searchVal);
-              searchHistory = Array.from(new Set(searchHistory));
-              localStorage.setItem(
-                "searchHistory",
-                JSON.stringify(searchHistory)
-              );
-            }
+            renderProducts(section, data, "hidden", "block");
           } else {
             section.insertAdjacentElement(
               "beforebegin",
               El({
                 element: "div",
+                id: "search-found",
+                className: "w-full p-4 flex items-center justify-between",
+
+                children: [
+                  El({
+                    element: "span",
+                    className: "font-bold text-lg text-black",
+                    innerText: `Results for "${searchVal}"`,
+                  }),
+                  El({
+                    element: "span",
+                    className: "font-semibold text-lg text-black",
+                    innerText: `${data.length} Found`,
+                  }),
+                ],
+              }),
+              El({
+                element: "div",
                 id: "search-notfound",
                 className:
-                  "w-full h-screen p-4 flex flex-col items-center justify-center",
+                  "w-full mt-20 p-4 flex flex-col items-center justify-center",
 
                 children: [
                   El({
@@ -70,13 +79,13 @@ export const searchResult = (searchVal) => {
                   }),
                   El({
                     element: "span",
-                    className: "font-bold text-2xl text-black mt-6",
+                    className: "font-bold text-xl text-black mt-6",
                     innerText: "Not Found",
                   }),
                   El({
                     element: "span",
                     className:
-                      "font-medium text-lg text-black text-center mt-3",
+                      "font-medium text-md text-black text-center mt-4",
                     innerText:
                       "Sorry, the keyword you entered cannot be found, please check again or search with another keyword.",
                   }),
@@ -84,17 +93,70 @@ export const searchResult = (searchVal) => {
               })
             );
           }
+          searchHistory.push(searchVal);
+          searchHistory = Array.from(new Set(searchHistory));
+          localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
         })
         .catch((error) => console.log(error));
     } else {
-      document.getElementById("search-result").classList.remove("hidden");
+      getData(`products?name_like=${searchVal}`).then((data) => {
+        renderProducts(section, data, "hidden", "block");
+      });
     }
   };
-  request();
+  searching();
+};
+
+const renderRecent = (resultSec) => {
+  let results = resultSec.children[1];
+  results.innerHTML = "";
+  searchHistory.map((sh) => {
+    const searchEl = El({
+      element: "div",
+      className: "w-full py-4 flex items-center justify-between",
+      children: [
+        El({
+          element: "span",
+          className: "text-gray-500",
+          onclick: (e) => {
+            searchResult(sh);
+            document.getElementById("search-input").value = sh;
+            document
+              .getElementById("search-result")
+              .classList.remove("scale-100");
+            document.getElementById("search-result").classList.add("scale-0");
+          },
+          innerText: sh,
+        }),
+        El({
+          element: "div",
+          className:
+            "flex justify-center rounded-[0.6rem] p-0.5 border-2 border-gray-400",
+          children: [
+            El({
+              element: "span",
+              className: "icon-[ic--round-plus] rotate-45 text-gray-500",
+              onclick: (e) => {
+                searchHistory = searchHistory.filter(
+                  (history) => history !== sh
+                );
+                localStorage.setItem(
+                  "searchHistory",
+                  JSON.stringify(searchHistory)
+                );
+                renderRecent(resultSec);
+              },
+            }),
+          ],
+        }),
+      ],
+    });
+    results.append(searchEl);
+  });
 };
 
 export const renderRecentSearch = () => {
-  const results = El({
+  const resultSec = El({
     element: "div",
     id: "search-result",
     className:
@@ -102,7 +164,7 @@ export const renderRecentSearch = () => {
   });
   searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
   if (searchHistory.length > 0) {
-    results.appendChild(
+    resultSec.append(
       El({
         element: "div",
         className:
@@ -117,61 +179,26 @@ export const renderRecentSearch = () => {
             element: "span",
             className: "font-semibold text-lg text-black",
             onclick: (e) => {
-              localStorage.removeItem("searchHistory");
-              renderRecentSearch();
+              searchHistory = [];
+              localStorage.setItem(
+                "searchHistory",
+                JSON.stringify(searchHistory)
+              );
+              renderRecent(resultSec);
             },
             innerText: "clear All",
           }),
         ],
+      }),
+      El({
+        element: "div",
+        id: "results",
+        className: "w-full",
       })
     );
-    searchHistory.map((sh) => {
-      const searchEl = El({
-        element: "div",
-        className: "w-full py-4 flex items-center justify-between",
-
-        children: [
-          El({
-            element: "span",
-            className: "text-gray-500",
-            onclick: (e) => {
-              searchResult(sh);
-              document.getElementById("search-input").value = sh;
-              document
-                .getElementById("search-result")
-                .classList.remove("scale-100");
-              document.getElementById("search-result").classList.add("scale-0");
-              renderRecentSearch();
-            },
-            innerText: sh,
-          }),
-          El({
-            element: "div",
-            className:
-              "flex justify-center rounded-[0.6rem] p-0.5 border-2 border-gray-400",
-            children: [
-              El({
-                element: "span",
-                className: "icon-[ic--round-plus] rotate-45 text-gray-500",
-                onclick: (e) => {
-                  searchHistory = searchHistory.filter(
-                    (history) => history !== sh
-                  );
-                  localStorage.setItem(
-                    "searchHistory",
-                    JSON.stringify(searchHistory)
-                  );
-                  renderRecentSearch();
-                },
-              }),
-            ],
-          }),
-        ],
-      });
-      results.appendChild(searchEl);
-    });
+    renderRecent(resultSec);
   }
-  return results;
+  return resultSec;
 };
 
 export const SearchPage = () => {

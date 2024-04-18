@@ -214,7 +214,7 @@ export const orderRender = (status = "active") => {
                     element: "span",
                     className:
                       "bg-gray-200 mr-4 py-1.5 px-2 rounded-lg font-medium text-[10px]",
-                    innerText: "In Delivery",
+                    innerText: "In Cart",
                   }),
                   //product total price and quantity handel button
                   El({
@@ -227,16 +227,17 @@ export const orderRender = (status = "active") => {
                         className: "text-shoea text-lg font-bold",
                         innerText: `$ ${item.totalPrice.toFixed(2)}`,
                       }),
-                      El({
-                        element: "div",
-                        className:
-                          "bg-black px-4 py-2 text-white rounded-full flex items-center justify-center whitespace-nowrap",
-                        children: [
-                          El({
-                            element: "span",
-                            className: "font-bold",
-                            innerHTML: "Track Order",
-                          }),
+                      Button({
+                        text: "Complete Order",
+                        extraClassName:
+                          "bg-black px-4 py-2 text-white rounded-full flex items-center justify-center whitespace-nowrap font-bold",
+                        eventListener: [
+                          {
+                            event: "click",
+                            callback: (e) => {
+                              router.navigate(ROUTE.checkout);
+                            },
+                          },
                         ],
                       }),
                     ],
@@ -248,30 +249,28 @@ export const orderRender = (status = "active") => {
           container.appendChild(elem);
         });
       } else {
-        container.insertAdjacentElement(
-          "beforebegin",
-          El({
-            element: "div",
-            className:
-              "w-full mt-20 p-4 flex flex-col items-center justify-center",
-            children: [
-              El({
-                element: "img",
-                src: `${PATHS.HOST_PATH}/images/not-found.png`,
-              }),
-              El({
-                element: "span",
-                className: "font-bold text-xl text-black mt-6",
-                innerText: "You don't have an order yet",
-              }),
-              El({
-                element: "span",
-                className: "font-medium text-md text-black text-center mt-4",
-                innerText: "You don't have an active orders at this time",
-              }),
-            ],
-          })
-        );
+        const notFound = El({
+          element: "div",
+          className:
+            "w-full mt-20 p-4 flex flex-col items-center justify-center",
+          children: [
+            El({
+              element: "img",
+              src: `${PATHS.HOST_PATH}/images/not-found.png`,
+            }),
+            El({
+              element: "span",
+              className: "font-bold text-xl text-black mt-6",
+              innerText: "You don't have an order yet",
+            }),
+            El({
+              element: "span",
+              className: "font-medium text-md text-black text-center mt-4",
+              innerText: "You don't have an active orders at this time",
+            }),
+          ],
+        });
+        container.appendChild(notFound);
       }
     }
   });

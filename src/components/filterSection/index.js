@@ -28,9 +28,9 @@ const filters = [
   },
 ];
 
-export const renderFilter = (targetId = 0) => {
+export const renderFilter = (target = 0) => {
   return filters.map((filter, index) => {
-    if (index === targetId) {
+    if (index === target) {
       return El({
         element: "div",
         dataset: {

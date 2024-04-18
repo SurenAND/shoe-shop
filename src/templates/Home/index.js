@@ -12,7 +12,7 @@ export const Home = (info) => {
     children: [
       El({
         element: "div",
-        className: "fixed top-0 bg-white w-full pb-2",
+        className: "absolute top-0 bg-white w-full pb-2",
         children: [header(info), SearchInput()],
       }),
       El({

@@ -42,15 +42,15 @@ export const header = (info) => {
       // section notification and wish list
       El({
         element: "div",
-        className: "flex items-center justify-center gap-4",
+        className: "flex items-center justify-center gap-4 mr-3",
         children: [
           El({
             element: "span",
-            className: "icon-[clarity--notification-line]",
+            className: "icon-[clarity--notification-line] w-6 h-6",
           }),
           El({
             element: "span",
-            className: "icon-[icon-park-outline--like]",
+            className: "icon-[icon-park-outline--like] w-6 h-6",
             onclick: (e) => {
               router.navigate(ROUTE.wishlist);
             },

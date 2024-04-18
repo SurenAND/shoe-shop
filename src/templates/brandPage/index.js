@@ -89,7 +89,7 @@ export const brandPage = (brand, data) => {
               El({
                 element: "span",
                 className: "text-shoea text-[16px] font-semibold w-full",
-                innerText: `$ ${product.price}`,
+                innerText: `$ ${product.price.toFixed(2)}`,
               }),
             ],
           });

@@ -8,7 +8,7 @@ export const renderWishList = () => {
   const container = document.querySelector(".product-section");
   getData(`users?_email=${Cookies.get("shoea")}`).then((data) => {
     const user = data[0];
-    renderProducts(container, user.wishlist, "block");
+    renderProducts(container, user.wishlist, "block", "block");
   });
 };
 
