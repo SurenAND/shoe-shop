@@ -1,3 +1,6 @@
 import "./style.css";
+import { router } from "./src/Routes/router";
 
-document.querySelector("#app");
+document.title = "Shoe Shop";
+
+router.resolve();
