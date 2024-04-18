@@ -46,52 +46,53 @@ export const searchResult = (searchVal) => {
             );
             renderProducts(section, data, "hidden", "block");
           } else {
-            section.insertAdjacentElement(
-              "beforebegin",
-              El({
-                element: "div",
-                id: "search-found",
-                className: "w-full p-4 flex items-center justify-between",
-
-                children: [
-                  El({
-                    element: "span",
-                    className: "font-bold text-lg text-black",
-                    innerText: `Results for "${searchVal}"`,
-                  }),
-                  El({
-                    element: "span",
-                    className: "font-semibold text-lg text-black",
-                    innerText: `${data.length} Found`,
-                  }),
-                ],
-              }),
-              El({
-                element: "div",
-                id: "search-notfound",
-                className:
-                  "w-full mt-20 p-4 flex flex-col items-center justify-center",
-
-                children: [
-                  El({
-                    element: "img",
-                    src: `${PATHS.HOST_PATH}/images/not-found.png`,
-                  }),
-                  El({
-                    element: "span",
-                    className: "font-bold text-xl text-black mt-6",
-                    innerText: "Not Found",
-                  }),
-                  El({
-                    element: "span",
-                    className:
-                      "font-medium text-md text-black text-center mt-4",
-                    innerText:
-                      "Sorry, the keyword you entered cannot be found, please check again or search with another keyword.",
-                  }),
-                ],
-              })
-            );
+            const showNotFound = El({
+              element: "div",
+              children: [
+                El({
+                  element: "div",
+                  id: "search-found",
+                  className: "w-full p-4 flex items-center justify-between",
+                  children: [
+                    El({
+                      element: "span",
+                      className: "font-bold text-lg text-black",
+                      innerText: `Results for "${searchVal}"`,
+                    }),
+                    El({
+                      element: "span",
+                      className: "font-semibold text-lg text-black",
+                      innerText: `${data.length} Found`,
+                    }),
+                  ],
+                }),
+                El({
+                  element: "div",
+                  id: "search-notfound",
+                  className:
+                    "w-full mt-20 p-4 flex flex-col items-center justify-center",
+                  children: [
+                    El({
+                      element: "img",
+                      src: `${PATHS.HOST_PATH}/images/not-found.png`,
+                    }),
+                    El({
+                      element: "span",
+                      className: "font-bold text-xl text-black mt-6",
+                      innerText: "Not Found",
+                    }),
+                    El({
+                      element: "span",
+                      className:
+                        "font-medium text-md text-black text-center mt-4",
+                      innerText:
+                        "Sorry, the keyword you entered cannot be found, please check again or search with another keyword.",
+                    }),
+                  ],
+                }),
+              ],
+            });
+            section.insertAdjacentElement("beforebegin", showNotFound);
           }
           searchHistory.push(searchVal);
           searchHistory = Array.from(new Set(searchHistory));
